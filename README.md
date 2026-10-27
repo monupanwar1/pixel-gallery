@@ -1,75 +1,117 @@
-# React + TypeScript + Vite
+# PixelGallery 📸
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive photo gallery built with **React, TypeScript, Vite, and Tailwind CSS**. Browse photos, search by author, and save your favourite images across page refreshes.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Photo Gallery:** Fetches 30 photos from the [Picsum Photos API](https://picsum.photos/v2/list?limit=30).
+- **Real-Time Search:** Filter photos by author name without additional API requests.
+- **Favourites:** Add or remove photos from favourites using React's `useReducer`.
+- **Persistent Storage:** Saves favourite photo IDs in browser `localStorage`.
+- **Custom Hook:** Uses `useFetchPhotos` to manage photo fetching, loading, and error states.
+- **Responsive Design:** Displays 1 column on mobile, 2 on tablet-sized screens, and 4 on desktop.
+- **Loading and Error States:** Provides feedback while photos load or if fetching fails.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Hooks: `useState`, `useEffect`, `useReducer`, `useCallback`, and `useMemo`
+- Picsum Photos API
+- Browser `localStorage`
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Bun](https://bun.sh/) or Node.js with npm installed.
+- Git.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
 
+   ```bash
+   git clone YOUR_GITHUB_REPOSITORY_URL
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd pixel-gallery
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   bun install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   bun run dev
+   ```
+
+5. Open the local URL shown in your terminal.
+
+### Production Build
+
+Create a production build:
+
+```bash
+bun run build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Preview the production build:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+bun run preview
 ```
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/
+│   └── PhotoCard.tsx
+├── hooks/
+│   └── useFetchPhotos.ts
+├── reducers/
+│   └── favouriteReducer.ts
+├── App.tsx
+├── index.css
+└── main.tsx
+```
+
+## 🧠 Implementation Highlights
+
+### Custom Hook
+
+`useFetchPhotos` handles API requests and exposes `photos`, `loading`, and `error` to the application.
+
+### Favourite State Management
+
+`favouriteReducer` handles the `TOGGLE` action to add or remove photo IDs. Favourite IDs are persisted in `localStorage`.
+
+### Search Optimization
+
+`useCallback` memoizes the search handler, while `useMemo` caches the filtered photo list until its dependencies change.
+
+## 📱 Responsive Layout
+
+The gallery adapts to different screen sizes:
+
+- **Mobile:** 1 column
+- **Tablet:** 2 columns
+- **Desktop:** 4 columns
+
+## 📄 Assignment
+
+Built as a frontend React internship pre-screening assignment for Celebrare.
+
+---
+
+Built with React and Tailwind CSS.
